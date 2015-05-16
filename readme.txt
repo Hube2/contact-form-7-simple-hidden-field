@@ -15,6 +15,8 @@ Add simeple hidden fields in Contact Form 7
 
 Create simple hidden fields with Conact Form 7
 
+Does exactly that, nothing more or less.
+
 [Also on GitHub](https://github.com/Hube2/contact-form-7-simple-hidden-field)
 
 == Installation ==

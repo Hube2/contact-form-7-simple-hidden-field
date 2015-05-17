@@ -27,8 +27,6 @@ Does exactly that, nothing more or less.
 
 == Screenshots ==
 
-1. Create Dynamic Select Field
-
 
 == Frequently Asked Questions ==
 

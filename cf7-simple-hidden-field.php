@@ -4,7 +4,7 @@
 		Plugin Name: Contact Form 7 - Simple Hidden Fields
 		Plugin URI: https://github.com/Hube2/contact-form-7-simple-hidden-field
 		Description: Simple Hidden Fields for Contact Form 7. Requires contact form 7
-		Version: 1.1.1
+		Version: 1.1.3
 		Author: John A. Huebner II
 		Author URI: https://github.com/Hube2/
 		License: GPL
@@ -53,6 +53,8 @@
 			$values = $tag['values'];
 			if (isset($values[0])) {
 				$value = $values[0];
+			} elseif (isset($_GET[$name])) {
+				$value = sanitize_text_field($_GET[$name]);
 			}
 			$atts = ' name="'.$name.'" value="'.$value.'" autocomplete="off"';
 			$html = '<input type="hidden"'.$atts.' />';

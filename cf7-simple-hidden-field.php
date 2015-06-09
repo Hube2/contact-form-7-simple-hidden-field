@@ -4,7 +4,7 @@
 		Plugin Name: Contact Form 7 - Simple Hidden Fields
 		Plugin URI: https://github.com/Hube2/contact-form-7-simple-hidden-field
 		Description: Simple Hidden Fields for Contact Form 7. Requires contact form 7
-		Version: 1.1.3
+		Version: 1.1.2
 		Author: John A. Huebner II
 		Author URI: https://github.com/Hube2/
 		License: GPL
@@ -138,7 +138,7 @@
 		public function simple_tg_pane($type='simplehidden') {
 			// output the code for CF7 tag generator
 			?>
-				<div id="wpcf7-tg-pane-<?php echo $type; ?>" class="hidden">
+				<div id="wpcf7-tg-pane-<?php echo $type; ?>" class="control-box">
 					<form action="">
 						<table>
 							<tr>
@@ -153,7 +153,7 @@
 							<tr>
 								<td>
 									<?php echo esc_html(__('Value', 'wpcf7')); ?><br />
-										<input type="text" name="values" class="oneline" />
+										<input type="text" name="values" class="oneline" /><br />
 										<?php echo esc_html(__('Enter the value for the hidden field', 'wpcf7')); ?>
 								</td>
 							</tr>
@@ -161,11 +161,11 @@
 						<div class="tg-tag">
 							<?php echo esc_html(__('Copy this code and paste it into the form left.', 'wpcf7')); ?><br />
 							<input type="text" name="<?php 
-									echo $type; ?>" class="tag" readonly="readonly" onfocus="this.select()" />
+									echo $type; ?>" class="tag" readonly="readonly" onfocus="this.select()" style="width:100%;" />
 						</div>
 						<div class="tg-mail-tag">
 							<?php echo esc_html(__('And, put this code into the Mail fields below.', 'wpcf7')); ?><br />
-							<input type="text" class="mail-tag" readonly="readonly" onfocus="this.select()" />
+							<input type="text" class="mail-tag" readonly="readonly" onfocus="this.select()" style="width:100%;" />
 						</div>
 					</form>
 				</div>
@@ -181,7 +181,7 @@
 		public function dynamic_tg_pane($type='dynamichidden2') {
 			// output the code for CF7 tag generator
 			?>
-				<div id="wpcf7-tg-pane-<?php echo $type; ?>" class="hidden">
+				<div id="wpcf7-tg-pane-<?php echo $type; ?>" class="control-box">
 					<form action="">
 						<table>
 							<tr>
@@ -196,7 +196,7 @@
 							<tr>
 								<td>
 									<?php echo esc_html(__('Filter', 'wpcf7')); ?><br />
-										<input type="text" name="values" class="oneline" />
+										<input type="text" name="values" class="oneline" /><br />
 										<?php echo esc_html(__('You can enter any filter. Use single quotes only. See docs &amp; examples.', 'wpcf7')); ?>
 								</td>
 							</tr>
@@ -204,11 +204,11 @@
 						<div class="tg-tag">
 							<?php echo esc_html(__('Copy this code and paste it into the form left.', 'wpcf7')); ?><br />
 							<input type="text" name="<?php 
-									echo $type; ?>" class="tag" readonly="readonly" onfocus="this.select()" />
+									echo $type; ?>" class="tag" readonly="readonly" onfocus="this.select()" style="width:100%;" />
 						</div>
 						<div class="tg-mail-tag">
 							<?php echo esc_html(__('And, put this code into the Mail fields below.', 'wpcf7')); ?><br />
-							<input type="text" class="mail-tag" readonly="readonly" onfocus="this.select()" />
+							<input type="text" class="mail-tag" readonly="readonly" onfocus="this.select()" style="width:100%;" />
 						</div>
 					</form>
 				</div>

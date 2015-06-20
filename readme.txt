@@ -3,7 +3,7 @@ Contributors: Hube2
 Tags: contact form 7 simeple hidden field
 Requires at least: 4.0
 Tested up to: 4.2
-Stable tag: 1.1.3
+Stable tag: 1.2.0
 Donate link:
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -69,9 +69,14 @@ If the filter does not exist or your filter does not return a value then the val
 
 == Changelog ==
 
+= 1.2.0 =
+
+* Updated tag page to be completely compatible w/ CF7 >= V4.2
+* Backwards compatible w/ CF7 < V4.2
+
 = 1.1.3 =
 
-* updated to work with CF7 V4.2 (tag pane still needs some work to make it 100% but it can be used and it will still work with previous versions of CF7)
+* Updated to work with CF7 V4.2 (tag pane still needs some work to make it 100% but it can be used and it will still work with previous versions of CF7)
 
 = 1.1.2 =
 

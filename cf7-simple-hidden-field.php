@@ -4,7 +4,7 @@
 		Plugin Name: Contact Form 7 - Simple Hidden Fields
 		Plugin URI: https://github.com/Hube2/contact-form-7-simple-hidden-field
 		Description: Simple Hidden Fields for Contact Form 7. Requires contact form 7
-		Version: 1.1.2
+		Version: 1.2.0
 		Author: John A. Huebner II
 		Author URI: https://github.com/Hube2/
 		License: GPL
@@ -120,99 +120,190 @@
 			$name = 'simplehidden';
 			$title = __('Simple Hidden Field', 'wpcf7');
 			$elm_id = 'wpcf7-tg-pane-simplehidden';
-			$callback = array($this, 'simple_tg_pane_');
+			$callback = array($this, 'simple_tg_pane');
 			wpcf7_add_tag_generator($name, $title, $elm_id, $callback);
 			$name = 'dynamichidden2';
 			$title = __('Dynamic Hidden Field', 'wpcf7');
 			$elm_id = 'wpcf7-tg-pane-dynamichidden2';
-			$callback = array($this, 'dynamic_tg_pane_');
+			$callback = array($this, 'dynamic_tg_pane');
 			wpcf7_add_tag_generator($name, $title, $elm_id, $callback);
 		} // end public function add_tag_generator
 		
-		public function simple_tg_pane_($form) {
-			// not sure I understand why this is the callback and then we call the tag generator
-			// I believe it is to dump the whatever is in $form
-			$this->simple_tg_pane('simplehidden');
-		} // end public function simple_tg_pane_
-		
-		public function simple_tg_pane($type='simplehidden') {
+		public function simple_tg_pane($form, $args = '') {
 			// output the code for CF7 tag generator
-			?>
-				<div id="wpcf7-tg-pane-<?php echo $type; ?>" class="control-box">
-					<form action="">
-						<table>
-							<tr>
-								<td>
-									<?php echo esc_html(__('Name', 'wpcf7')); ?><br />
-									<input type="text" name="name" class="tg-name oneline" />
-								</td>
-								<td></td>
-							</tr>
-						</table>
-						<table>
-							<tr>
-								<td>
-									<?php echo esc_html(__('Value', 'wpcf7')); ?><br />
-										<input type="text" name="values" class="oneline" /><br />
-										<?php echo esc_html(__('Enter the value for the hidden field', 'wpcf7')); ?>
-								</td>
-							</tr>
-						</table>
-						<div class="tg-tag">
-							<?php echo esc_html(__('Copy this code and paste it into the form left.', 'wpcf7')); ?><br />
-							<input type="text" name="<?php 
-									echo $type; ?>" class="tag" readonly="readonly" onfocus="this.select()" style="width:100%;" />
+			if (class_exists('WPCF7_TagGenerator')) {
+				// tag generator for CF7 >= v4.2
+				$args = wp_parse_args( $args, array() );
+				$desc = __('Generate a form-tag for a Simple Hidden field. For more details, see %s.');
+				$desc_link = '<a href="https://wordpress.org/plugins/contact-form-7-simple-hidden-field/" target="_blank">'.__( 'Contact Form 7 - Simple Hidden Field').'</a>';
+				?>
+					<div class="control-box">
+						<fieldset>
+							<legend><?php echo sprintf(esc_html($desc), $desc_link); ?></legend>
+							<table class="form-table">
+								<tbody>
+									<tr>
+										<th scope="row">
+											<label for="<?php 
+													echo esc_attr($args['content'].'-name'); ?>"><?php 
+													echo esc_html(__('Name', 'contact-form-7')); ?></label>
+										</th>
+										<td>
+											<input type="text" name="name" class="tg-name oneline" id="<?php 
+													echo esc_attr($args['content'].'-name' ); ?>" />
+										</td>
+									</tr>
+									<tr>
+										<th scope="row">
+											<label for="<?php 
+													echo esc_attr($args['content'].'-values'); ?>"><?php 
+													echo esc_html(__('Value', 'contact-form-7')); ?></label>
+										</th>
+										<td>
+											<input type="text" name="values" class="oneline" id="<?php 
+													echo esc_attr($args['content'].'-values' ); ?>" /><br />
+											<?php echo esc_html(__('Enter the value for the hidden field')); ?>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</fieldset>
+					</div>
+					<div class="insert-box">
+						<input type="text" name="simplehidden" class="tag code" readonly="readonly" onfocus="this.select()" />
+						<div class="submitbox">
+							<input type="button" class="button button-primary insert-tag" value="<?php 
+									echo esc_attr(__('Insert Tag', 'contact-form-7')); ?>" />
 						</div>
-						<div class="tg-mail-tag">
-							<?php echo esc_html(__('And, put this code into the Mail fields below.', 'wpcf7')); ?><br />
-							<input type="text" class="mail-tag" readonly="readonly" onfocus="this.select()" style="width:100%;" />
-						</div>
-					</form>
-				</div>
-			<?php 
+					</div>
+				<?php 
+			} else {
+				$type='simplehidden'
+				// tag generator for CF7 <v4.2
+				// but modified slightly so it will still work with with >= v4.2
+				?>
+					<div id="wpcf7-tg-pane-<?php echo $type; ?>" class="control-box">
+						<form action="">
+							<table>
+								<tr>
+									<td>
+										<?php echo esc_html(__('Name', 'contact-form-7')); ?><br />
+										<input type="text" name="name" class="tg-name oneline" />
+									</td>
+									<td></td>
+								</tr>
+							</table>
+							<table>
+								<tr>
+									<td>
+										<?php echo esc_html(__('Value', 'contact-form-7')); ?><br />
+											<input type="text" name="values" class="oneline" /><br />
+											<?php echo esc_html(__('Enter the value for the hidden field')); ?>
+									</td>
+								</tr>
+							</table>
+							<div class="tg-tag">
+								<?php echo esc_html(__('Copy this code and paste it into the form left.')); ?><br />
+								<input type="text" name="<?php 
+										echo $type; ?>" class="tag" readonly="readonly" onfocus="this.select()" style="width:100%;" />
+							</div>
+							<div class="tg-mail-tag">
+								<?php echo esc_html(__('And, put this code into the Mail fields below.')); ?><br />
+								<input type="text" class="mail-tag" readonly="readonly" onfocus="this.select()" style="width:100%;" />
+							</div>
+						</form>
+					</div>
+				<?php 
+			}
 		} // end public function simple_tg_pane
 		
-		public function dynamic_tg_pane_($form) {
-			// not sure I understand why this is the callback and then we call the tag generator
-			// I believe it is to dump the whatever is in $form
-			$this->dynamic_tg_pane('dynamichidden2');
-		} // end public function dynamic_tg_pane_
-		
-		public function dynamic_tg_pane($type='dynamichidden2') {
+		public function dynamic_tg_pane($form, $args = '') {
 			// output the code for CF7 tag generator
-			?>
-				<div id="wpcf7-tg-pane-<?php echo $type; ?>" class="control-box">
-					<form action="">
-						<table>
-							<tr>
-								<td>
-									<?php echo esc_html(__('Name', 'wpcf7')); ?><br />
-									<input type="text" name="name" class="tg-name oneline" />
-								</td>
-								<td></td>
-							</tr>
-						</table>
-						<table>
-							<tr>
-								<td>
-									<?php echo esc_html(__('Filter', 'wpcf7')); ?><br />
-										<input type="text" name="values" class="oneline" /><br />
-										<?php echo esc_html(__('You can enter any filter. Use single quotes only. See docs &amp; examples.', 'wpcf7')); ?>
-								</td>
-							</tr>
-						</table>
-						<div class="tg-tag">
-							<?php echo esc_html(__('Copy this code and paste it into the form left.', 'wpcf7')); ?><br />
-							<input type="text" name="<?php 
-									echo $type; ?>" class="tag" readonly="readonly" onfocus="this.select()" style="width:100%;" />
+			if (class_exists('WPCF7_TagGenerator')) {
+				// tag generator for CF7 >= v4.2
+				$args = wp_parse_args( $args, array() );
+				$desc = __('Generate a form-tag for a Dynamic Hidden field. For more details, see %s.');
+				$desc_link = '<a href="https://wordpress.org/plugins/contact-form-7-simple-hidden-field/" target="_blank">'.__( 'Contact Form 7 - Simple Hidden Field').'</a>';
+				?>
+					<div class="control-box">
+						<fieldset>
+							<legend><?php echo sprintf(esc_html($desc), $desc_link); ?></legend>
+							<table class="form-table">
+								<tbody>
+									<tr>
+										<th scope="row">
+											<label for="<?php 
+													echo esc_attr($args['content'].'-name'); ?>"><?php 
+													echo esc_html(__('Name', 'contact-form-7')); ?></label>
+										</th>
+										<td>
+											<input type="text" name="name" class="tg-name oneline" id="<?php 
+													echo esc_attr($args['content'].'-name' ); ?>" />
+										</td>
+									</tr>
+									<tr>
+										<th scope="row">
+											<label for="<?php 
+													echo esc_attr($args['content'].'-values'); ?>"><?php 
+													echo esc_html(__('Filter')); ?></label>
+										</th>
+										<td>
+											<input type="text" name="values" class="tg-name oneline" id="<?php 
+													echo esc_attr($args['content'].'-values' ); ?>" /><br />
+													<?php 
+														echo esc_html(__('You can enter any filter. Use single quotes only. 
+														                  See docs &amp; examples.'));
+													?>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</fieldset>
+					</div>
+					<div class="insert-box">
+						<input type="text" name="simplehidden" class="tag code" readonly="readonly" onfocus="this.select()" />
+						<div class="submitbox">
+							<input type="button" class="button button-primary insert-tag" value="<?php 
+									echo esc_attr(__('Insert Tag', 'contact-form-7')); ?>" />
 						</div>
-						<div class="tg-mail-tag">
-							<?php echo esc_html(__('And, put this code into the Mail fields below.', 'wpcf7')); ?><br />
-							<input type="text" class="mail-tag" readonly="readonly" onfocus="this.select()" style="width:100%;" />
-						</div>
-					</form>
-				</div>
-			<?php 
+					</div>
+				<?php 
+			} else {
+				$type='dynamichidden2'
+				?>
+					<div id="wpcf7-tg-pane-<?php echo $type; ?>" class="control-box">
+						<form action="">
+							<table>
+								<tr>
+									<td>
+										<?php echo esc_html(__('Name', 'contact-form-7')); ?><br />
+										<input type="text" name="name" class="tg-name oneline" />
+									</td>
+									<td></td>
+								</tr>
+							</table>
+							<table>
+								<tr>
+									<td>
+										<?php echo esc_html(__('Filter')); ?><br />
+											<input type="text" name="values" class="oneline" /><br />
+											<?php echo esc_html(__('You can enter any filter. Use single quotes only. See docs &amp; examples.')); ?>
+									</td>
+								</tr>
+							</table>
+							<div class="tg-tag">
+								<?php echo esc_html(__('Copy this code and paste it into the form left.', 'contact-form-7')); ?><br />
+								<input type="text" name="<?php 
+										echo $type; ?>" class="tag" readonly="readonly" onfocus="this.select()" style="width:100%;" />
+							</div>
+							<div class="tg-mail-tag">
+								<?php echo esc_html(__('And, put this code into the Mail fields below.', 'contact-form-7')); ?><br />
+								<input type="text" class="mail-tag" readonly="readonly" onfocus="this.select()" style="width:100%;" />
+							</div>
+						</form>
+					</div>
+				<?php 
+			}
 		} // end public function dynamic_tg_pane
 		
 	} // end class wpcf7_simple_hidden_field

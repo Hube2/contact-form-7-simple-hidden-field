@@ -4,7 +4,7 @@
 		Plugin Name: Contact Form 7 - Simple Hidden Fields
 		Plugin URI: https://github.com/Hube2/contact-form-7-simple-hidden-field
 		Description: Simple Hidden Fields for Contact Form 7. Requires contact form 7
-		Version: 1.2.0
+		Version: 1.2.1
 		Author: John A. Huebner II
 		Author URI: https://github.com/Hube2/
 		License: GPL
@@ -261,7 +261,7 @@
 						</fieldset>
 					</div>
 					<div class="insert-box">
-						<input type="text" name="simplehidden" class="tag code" readonly="readonly" onfocus="this.select()" />
+						<input type="text" name="dynamichidden2" class="tag code" readonly="readonly" onfocus="this.select()" />
 						<div class="submitbox">
 							<input type="button" class="button button-primary insert-tag" value="<?php 
 									echo esc_attr(__('Insert Tag', 'contact-form-7')); ?>" />

@@ -3,7 +3,7 @@ Contributors: Hube2
 Tags: contact form 7 simeple hidden field
 Requires at least: 4.0
 Tested up to: 4.3
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 Donate link:
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -77,6 +77,10 @@ For example, a shortcode cannot return an array. A shortcode pretty much require
 
 
 == Changelog ==
+
+= 1.2.1 =
+
+* Corrected a bug, incorrect field type name for dynamic hidden field when creating new field, introduced in 1.2.0
 
 = 1.2.0 =
 

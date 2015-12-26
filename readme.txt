@@ -1,4 +1,4 @@
-=== Contact Form 7 - Simple Hidden Field ===
+=== Hidden Field for Contact Form 7 ===
 Contributors: Hube2
 Tags: contact form 7 simeple hidden field
 Requires at least: 4.0

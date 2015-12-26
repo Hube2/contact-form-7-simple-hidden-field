@@ -2,7 +2,7 @@
 Contributors: Hube2
 Tags: contact form 7 simeple hidden field
 Requires at least: 4.0
-Tested up to: 4.3
+Tested up to: 4.4
 Stable tag: 1.2.1
 Donate link:
 License: GPLv2 or later

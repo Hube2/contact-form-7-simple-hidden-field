@@ -4,7 +4,7 @@
 		Plugin Name: Hidden Field for Contact Form 7
 		Plugin URI: https://github.com/Hube2/contact-form-7-simple-hidden-field
 		Description: Simple Hidden Fields for Contact Form 7. Requires contact form 7
-		Version: 1.2.1
+		Version: 2.0.0
 		Author: John A. Huebner II
 		Author URI: https://github.com/Hube2/
 		License: GPL
@@ -24,8 +24,8 @@
 		public function init() {
 			if(function_exists('wpcf7_add_shortcode')){
 				/* Shortcode handler */		
-				wpcf7_add_shortcode('simplehidden', array($this, 'simple_shortcode_handler'), true);
-				wpcf7_add_shortcode('dynamichidden2', array($this, 'dynamic_shortcode_handler'), true);
+				wpcf7_add_form_tag('simplehidden', array($this, 'simple_shortcode_handler'), true);
+				wpcf7_add_form_tag('dynamichidden2', array($this, 'dynamic_shortcode_handler'), true);
 			}
 			add_filter('wpcf7_validate_simplehidden', array($this, 'validation_filter'), 10, 2);
 			add_filter('wpcf7_validate_dynamichidden2', array($this, 'validation_filter'), 10, 2);

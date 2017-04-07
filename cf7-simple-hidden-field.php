@@ -22,10 +22,13 @@
 		} // end public function __construct
 		
 		public function init() {
-			if(function_exists('wpcf7_add_shortcode')){
+			if(function_exists('wpcf7_add_form_tag')){
 				/* Shortcode handler */		
 				wpcf7_add_form_tag('simplehidden', array($this, 'simple_shortcode_handler'), true);
 				wpcf7_add_form_tag('dynamichidden2', array($this, 'dynamic_shortcode_handler'), true);
+			} else {
+				wpcf7_add_shortcode('simplehidden', array($this, 'simple_shortcode_handler'), true);
+				wpcf7_add_shortcode('dynamichidden2', array($this, 'dynamic_shortcode_handler'), true);
 			}
 			add_filter('wpcf7_validate_simplehidden', array($this, 'validation_filter'), 10, 2);
 			add_filter('wpcf7_validate_dynamichidden2', array($this, 'validation_filter'), 10, 2);

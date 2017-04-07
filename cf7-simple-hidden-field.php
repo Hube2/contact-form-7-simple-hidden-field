@@ -4,7 +4,7 @@
 		Plugin Name: Hidden Field for Contact Form 7
 		Plugin URI: https://github.com/Hube2/contact-form-7-simple-hidden-field
 		Description: Simple Hidden Fields for Contact Form 7. Requires contact form 7
-		Version: 2.0.0
+		Version: 2.0.1
 		Author: John A. Huebner II
 		Author URI: https://github.com/Hube2/
 		License: GPL

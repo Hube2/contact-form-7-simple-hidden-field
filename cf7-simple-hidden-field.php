@@ -42,7 +42,7 @@
 		
 		public function simple_shortcode_handler($tag) {
 			// generates html for form field
-			if (!is_a($tag, 'WPCF7_FormTag')) {
+			if (is_a($tag, 'WPCF7_FormTag')) {
 				$tag = (array)$tag;
 			}
 			if (empty($tag)) {
@@ -70,7 +70,7 @@
 		public function dynamic_shortcode_handler($tag) {
 			// generates html for form field
 			$tag_o = $tag;
-			if (!is_a($tag, 'WPCF7_FormTag')) {
+			if (is_a($tag, 'WPCF7_FormTag')) {
 				$tag = (array)$tag;
 			}
 			$name = $tag['name'];

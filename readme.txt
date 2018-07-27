@@ -1,6 +1,6 @@
 === Hidden Field for Contact Form 7 ===
 Contributors: Hube2
-Tags: contact form 7 simeple hidden field
+Tags: adopt-me, contact form 7 simeple hidden field
 Requires at least: 4.0
 Tested up to: 4.9
 Stable tag: 2.0.2
@@ -12,6 +12,8 @@ Add simeple hidden fields in Contact Form 7
 
 
 == Description ==
+
+Addopt this plugin. [Please see details on Github](https://github.com/Hube2/contact-form-7-simple-hidden-field).
 
 Create simple hidden fields and dynamically generated hidden fields with Conact Form 7
 
